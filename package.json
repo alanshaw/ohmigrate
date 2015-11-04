@@ -1,0 +1,38 @@
+{
+  "name": "ohmigrate",
+  "version": "0.0.0",
+  "description": "Minimal framework for migrating databases or whatever from one version to the next",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanshaw/ohmigrate.git"
+  },
+  "keywords": [
+    "migration",
+    "migrate",
+    "database",
+    "mongo",
+    "mongodb",
+    "mongoose",
+    "mysql",
+    "sql",
+    "rethinkdb",
+    "postgres",
+    "postgresql",
+    "couch",
+    "couchdb"
+  ],
+  "author": "Alan Shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alanshaw/ohmigrate/issues"
+  },
+  "homepage": "https://github.com/alanshaw/ohmigrate#readme",
+  "devDependencies": {
+    "standard": "^5.3.1",
+    "tape": "^4.2.2"
+  }
+}
