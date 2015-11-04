@@ -23,7 +23,9 @@ omg({
   done: function (err) {
     // All migrations ran successfully, or an error occurred
     if (err) throw err
-  }
+  },
+
+  ctx: {db: require('./db')} // Context (this) in migration functions
 })
 ```
 
@@ -47,7 +49,7 @@ Migrations look like this:
 
 ```js
 module.exports = function (cb) {
-  // Do some stuff, then...in some future...
+  // Do some stuff with this.db, then...in some future...
   cb()
 }
 ```
@@ -65,6 +67,10 @@ Function called after a migration completes _successfully_. It is passed the nam
 ### `done`
 
 Function called _once_ when all migrations complete successfully, or when an error occurs during a migration. If an error occurs, it is passed the error object.
+
+### `ctx`
+
+Object referred to by `this` in your migration functions.
 
 ### `dir`
 

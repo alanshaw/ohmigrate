@@ -9,6 +9,7 @@ module.exports = function (opts) {
   var did = opts.did || function () {}
   var done = opts.done || function () {}
   var dir = opts.dir || process.cwd() + '/migrations'
+  var ctx = opts.ctx || {}
 
   fs.readdir(dir, function (err, filenames) {
     if (err) return done(err)
@@ -59,7 +60,7 @@ module.exports = function (opts) {
         console.log('Running migration', migration.name)
 
         try {
-          migration.run(function (err) {
+          migration.run.call(ctx, function (err) {
             if (err) return cb(err)
 
             console.log('Finished running migration', migration.name)
