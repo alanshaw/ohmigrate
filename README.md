@@ -46,7 +46,7 @@ e.g.
 Migrations look like this:
 
 ```js
-module.exports = function (db, api, cb) {
+module.exports = function (cb) {
   // Do some stuff, then...in some future...
   cb()
 }
