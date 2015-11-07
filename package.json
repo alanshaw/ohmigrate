@@ -34,5 +34,8 @@
   "devDependencies": {
     "standard": "^5.3.1",
     "tape": "^4.2.2"
+  },
+  "dependencies": {
+    "semver": "^5.0.3"
   }
 }

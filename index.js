@@ -1,4 +1,5 @@
 var fs = require('fs')
+var semver = require('semver')
 
 module.exports = function (opts) {
   opts = opts || {}
@@ -17,28 +18,11 @@ module.exports = function (opts) {
     var migrations = filenames.filter(function (filename) {
       return endsWith(filename, '.js')
     }).sort(function (a, b) {
-      var partsA = a.split('.').map(mapInt)
-      var partsB = b.split('.').map(mapInt)
+      var verA = a.split(/[^a-zA-A0-9-+.]/i)[0]
+      var verB = b.split(/[^a-zA-A0-9-+.]/i)[0]
 
-      if (partsA[0] < partsB[0]) {
-        return -1
-      } else if (partsA[0] > partsB[0]) {
-        return 1
-      } else {
-        if (partsA[1] < partsB[1]) {
-          return -1
-        } else if (partsA[1] > partsB[1]) {
-          return 1
-        } else {
-          if (partsA[2] < partsB[2]) {
-            return -1
-          } else if (partsA[2] > partsB[2]) {
-            return 1
-          } else {
-            return 0
-          }
-        }
-      }
+      if (semver.gt(verA, verB, true)) return 1
+      if (semver.lt(verA, verB, true)) return -1
     }).map(function (filename) {
       return {
         name: filename.slice(0, filename.length - 3), // Remove .js
@@ -98,9 +82,5 @@ module.exports = function (opts) {
   function endsWith (str, ends) {
     var position = str.length - ends.length
     return position >= 0 && str.indexOf(ends, position) === position
-  }
-
-  function mapInt (str) {
-    return parseInt(str, 10)
   }
 }

@@ -29,20 +29,20 @@ omg({
 })
 ```
 
-Your migrations go in `process.cwd() + '/migrations'` and **must** be prefixed with a [semver](http://semver.org/) version number. Migrations are run sequentially in semver version order.
+Your migrations go in `process.cwd() + '/migrations'` and **must** be prefixed with a [semver](http://semver.org/) version number followed by a "_". Migrations are run sequentially in semver version order.
 
 e.g.
 
 ```
 .
 └── migrations
-    ├── 0.0.0-create-admin.js
-    ├── 0.0.1-add-fields.js
-    ├── 1.0.0-replace-missing.js
-    ├── 1.1.0-dodge-viper.js
-    ├── 2.0.0-new-schema.js
-    ├── 2.0.1-more-schema.js
-    └── 2.0.2-too-much-schema.js
+    ├── 0.0.0_create-admin.js
+    ├── 0.0.1_add-fields.js
+    ├── 1.0.0_replace-missing.js
+    ├── 1.1.0_dodge-viper.js
+    ├── 2.0.0_new-schema.js
+    ├── 2.0.1_more-schema.js
+    └── 2.0.2_too-much-schema.js
 ```
 
 Migrations look like this:
