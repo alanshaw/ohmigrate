@@ -1,4 +1,4 @@
-# ohmigrate
+# ohmigrate [![Build Status](https://travis-ci.org/alanshaw/ohmigrate.svg)](https://travis-ci.org/alanshaw/ohmigrate) [![Dependency Status](https://david-dm.org/alanshaw/ohmigrate.svg)](https://david-dm.org/alanshaw/ohmigrate)
 
 Minimal framework for migrating databases or whatever from one version to the next.
 
