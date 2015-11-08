@@ -1,5 +1,7 @@
 var fs = require('fs')
 var semver = require('semver')
+var each = require('./each')
+var endsWith = require('./ends-with')
 
 module.exports = function (opts) {
   opts = opts || {}
@@ -31,29 +33,14 @@ module.exports = function (opts) {
     })
 
     each(migrations, function (migration, cb) {
-      console.log('Starting migration', migration.name)
-
-      should(migration, function (err, yes) {
+      should(migration.name, function (err, yes) {
         if (err) return cb(err)
-
-        if (!yes) {
-          console.log('Skipping completed migration', migration.name)
-          return cb()
-        }
-
-        console.log('Running migration', migration.name)
+        if (!yes) return cb()
 
         try {
           migration.run.call(ctx, function (err) {
             if (err) return cb(err)
-
-            console.log('Finished running migration', migration.name)
-
-            did(migration.name, function () {
-              if (err) return cb(err)
-              console.log('Migration completed successfully', migration.name)
-              cb()
-            })
+            did(migration.name, cb)
           })
         } catch (err) {
           cb(err)
@@ -61,26 +48,4 @@ module.exports = function (opts) {
       })
     }, done)
   })
-
-  function each (arr, iterator, cb) {
-    var completed = 0
-    function iterate () {
-      iterator(arr[completed], function (err) {
-        if (err) {
-          cb(err)
-          cb = function () {}
-          return
-        }
-        ++completed
-        if (completed >= arr.length) return cb()
-        setImmediate(iterate)
-      })
-    }
-    iterate()
-  }
-
-  function endsWith (str, ends) {
-    var position = str.length - ends.length
-    return position >= 0 && str.indexOf(ends, position) === position
-  }
 }

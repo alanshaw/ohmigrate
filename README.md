@@ -29,7 +29,7 @@ omg({
 })
 ```
 
-Your migrations go in `process.cwd() + '/migrations'` and **must** be prefixed with a [semver](http://semver.org/) version number followed by a "_". Migrations are run sequentially in semver version order.
+Your migrations go in `process.cwd() + '/migrations'` and **must** be prefixed with a [semver](http://semver.org/) version number followed by a "\_". Migrations are run sequentially in semver version order.
 
 e.g.
 
