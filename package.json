@@ -1,6 +1,6 @@
 {
   "name": "ohmigrate",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Minimal framework for migrating databases or whatever from one version to the next",
   "main": "index.js",
   "scripts": {
